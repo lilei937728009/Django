@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static "css/test_login.css" %}" type="text/css">
-    <script type="text/javascript" src="{% static "js/test_js.js" %}"></script>
+
     <title>登陆</title>
 </head>
 <body>
     <img src="{% static "img/logo.png" %}"  alt="鱼C-Logo" /><br>
     <form action="http://localhost:8000/login" method="post">
-        <p>账号：<input type="text" name="account"></p>
-        <p>密码：<input type="text" name="password"></p>
+        <p>账号：<input type="text" class="account" name="account"></p>
+        <p>密码：<input type="text" class="password" name="password"></p>
         <button type="submit">登陆</button>
          {% csrf_token %}
     </form>
     <button id="b1" type="submit">Ajax</button>
     <p id="p1">初始文本</p>
+    <script type="text/javascript" src="{% static "js/test_js.js" %}"></script>
 </body>
 </html>
