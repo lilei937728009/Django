@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 from App.Models.test_models import Users
 from random import randint
 from django.http import HttpResponse
@@ -34,3 +36,12 @@ def test_ClearUser(request):
     user = Users.objects.all()
     user.delete()
     return HttpResponse("Clear Success")
+
+#@csrf_exempt
+def login(request):
+    if request.method == "POST":
+        account = request.POST.get("account")
+        password = request.POST.get("password")
+        return HttpResponse(f"{account}&{password}")
+    else:
+        return HttpResponse("你发送了个GET请求")

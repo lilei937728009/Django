@@ -8,7 +8,12 @@
     <title>登陆</title>
 </head>
 <body>
-    <h1>欢迎登陆</h1>
-    <img src="{% static "img/logo.png" %}"  alt="鱼C-Logo" />
+    <img src="{% static "img/logo.png" %}"  alt="鱼C-Logo" /><br>
+    <form action="http://localhost:8000/login" method="post">
+        <p>账号：<input type="text" name="account"></p>
+        <p>密码：<input type="text" name="password"></p>
+        <button type="submit">登陆</button>
+         {% csrf_token %}
+    </form>
 </body>
 </html>

@@ -13,4 +13,5 @@ urlpatterns = [
     path("test_AddUser",test_views.test_AddUser),
     path("test_ClearUser",test_views.test_ClearUser),
     path("test_SeeUserName",test_views.test_SeeUserName),
+    path("login",test_views.login),
 ]
