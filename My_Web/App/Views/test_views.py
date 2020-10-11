@@ -37,7 +37,7 @@ def test_ClearUser(request):
     user.delete()
     return HttpResponse("Clear Success")
 
-#@csrf_exempt
+@csrf_exempt
 def login(request):
     if request.method == "POST":
         account = request.POST.get("account")
