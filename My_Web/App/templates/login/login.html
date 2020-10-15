@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <h1 :class="{title1:t_color}" >测试网页</h1>
-        <h1 :style="{'font-size':font_size + 'em'}">测试</h1>
+        <h1>[[ font_size ]]</h1>
         <img src="{% static "img/logo.png" %}" alt="鱼C-Logo"/><br>
         <form id="login_form" action="http://localhost:8000/login" method="post">
             <p>账号：<input type="text" :class="{'form_login':input_text}" name="account"></p>
@@ -22,6 +22,7 @@
         <button id="b1" type="submit">Ajax</button>
         <button @click="btnclick">变大</button>
         <button @click="btn_add" >+</button>
+        <button @click="btn_sub">-</button>
         <p id="p1">[[ message ]]</p>
         <li v-for="item in movies">[[ item ]]</li>
     </div>

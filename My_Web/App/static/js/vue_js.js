@@ -13,11 +13,16 @@ const app = new Vue({
             this.input_text = !this.input_text
             this.t_color = !this.t_color
         },
-        btn_add: function () {
+        btn_add() {
+
             this.font_size += 1
+        },
+        btn_sub(){
+            this.font_size -= 1
         }
     },
     created: function () {
         console.log("创建成功")
     }
 })
+
