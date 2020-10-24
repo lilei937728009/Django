@@ -48,3 +48,14 @@ def login(request):
         return HttpResponse(f"{account}&{password}")
     else:
         return HttpResponse("该接口不支持GET请求")
+
+def form(request):
+    return render(request,"test/form.html")
+
+
+def inherit(request):
+    return render(request,"test/inherit.html")
+
+
+def dati(request):
+    return render(request, "test/dati.html")

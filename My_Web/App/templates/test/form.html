@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+</div>
+<div id="app">
+    <h1>测试用例</h1>
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>模块</th>
+            <th>次数</th>
+            <th>按钮</th>
+            <th>移除</th>
+        </tr>
+        <tr v-for="(item,index) in cases">
+            <td>[[item.code ]]</td>
+            <td>[[item.name ]]</td>
+            <td>[[item.count ]]</td>
+            <td>
+                <button :disabled="item.btn <= 1" @click="reduction(index)">-</button>
+                [[item.btn ]]
+                <button @click="increase(index)">+</button>
+            </td>
+            <td>
+                <button @click="remove_case(index)">移除</button>
+            </td>
+        </tr>
+    </table>
+    <p>[['总和：' + cases.length ]]</p>
+
+    <div id="add">
+        <h1>添加用例</h1>
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>模块</th>
+                <th>次数</th>
+                <th>按钮</th>
+                <th>移除</th>
+            </tr>
+            <tr>
+                <td v-if="this.cases.length >1"> [[ this.cases[this.cases.length-1].code+1 ]]</td>
+                <td v-else>[[ this.cases.length+1 ]]</td>
+                <td><input type="text" ref="mode" v-model="inputs"></td>
+                <td><input type="text" ref="count" value="1"></td>
+                <td></td>
+                <td>
+                    <button @click="add_case()">添加</button>
+                </td>
+            </tr>
+        </table>
+        <p>输入内容：[[ inputs ]]</p>
+    </div>
+
+</div>
+
+<style>
+    table {
+        text-align: center;
+        border-collapse: collapse;
+        margin: 0 auto;
+
+    }
+
+    th, td {
+        border: 1px solid black;
+        font-size: 2em;
+        width: 10%;
+
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    body {
+        background: #AAAAAA;
+    }
+
+    #app {
+        background: #FFF0F5;
+        margin: 5% 0% 5% 0%;
+    }
+
+    #add {
+        background: #FFF0F5;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        delimiters: ["[[", "]]"],
+        el: "#app",
+        data: {
+            cases: [
+                {code: 1, name: "测试", count: 1, btn: 1}
+            ],
+            inputs: null,
+        },
+        methods: {
+            increase(index) {
+                this.cases[index].btn += 1
+                this.cases[index].count += 1
+
+            },
+            reduction(index) {
+                this.cases[index].btn -= 1
+                this.cases[index].count -= 1
+            },
+            remove_case(index) {
+                this.cases.splice(index, 1)
+
+            },
+            add_case() {
+                if (this.cases.length >= 1) {
+                    this.cases.push({
+                        code: this.cases[this.cases.length - 1].code + 1,
+                        name: this.$refs.mode.value,
+                        count: Number(this.$refs.count.value) || 1,
+                        btn: 1,
+                    })
+                } else {
+                    this.cases.push({
+                        code: 1,
+                        name: this.$refs.mode.value,
+                        count: Number(this.$refs.count.value),
+                        btn: 1,
+                    })
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

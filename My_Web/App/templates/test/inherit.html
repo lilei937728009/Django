@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inherit</title>
+</head>
+<body>
+<div id="app" >
+    <cpn2 :s="s"></cpn2>
+</div>
+
+</body>
+
+<template id="cpn1">
+    <li>[[ message ]]</li>
+</template>
+
+<template id="cpn2" >
+    <ul>
+        <cpn1></cpn1>
+        <li>[[ message ]]</li>
+        <li>[[ s ]]</li>
+    </ul>
+
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    cpn1 = {
+        delimiters: ["[[", "]]"],
+        template: "#cpn1",
+        data() {
+            return {
+                message: "test"
+            }
+        }
+    }
+
+    cpn2 = {
+        delimiters: ["[[", "]]"],
+        template: "#cpn2",
+        props: {
+            s:{
+                type: String,
+                default: 'cpn2_super',
+                required: true,
+            }
+        },
+        components: {cpn1},
+        data() {
+            return {
+                message: "test2"
+            }
+        }
+    }
+
+    const app = new Vue({
+        delimiters: ["[[", "]]"],
+        el: '#app',
+        components: {cpn2},
+        data: {
+            as:"sss"
+        },
+
+        method: {}
+    })
+
+</script>
+</html>
